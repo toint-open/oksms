@@ -22,7 +22,7 @@
 
     <groupId>cn.toint</groupId>
     <artifactId>oksms-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <packaging>pom</packaging>
     
@@ -61,8 +61,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <ok-dependencies.version>1.0.2</ok-dependencies.version>
-        <oktool.version>2.0.0-alpha-2</oktool.version>
+        <ok-dependencies.version>1.0.3</ok-dependencies.version>
+        <oktool.version>2.0.0-alpha-4</oktool.version>
+        <springboot.version>3.5.3</springboot.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +72,14 @@
                 <groupId>cn.toint</groupId>
                 <artifactId>ok-dependencies</artifactId>
                 <version>${ok-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${springboot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -98,16 +107,6 @@
     </dependencyManagement>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${springboot.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
         <plugins>
             <!-- 统一更新pom版本 -->
             <plugin>

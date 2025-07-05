@@ -24,7 +24,7 @@ import cn.toint.oksms.email.MailClient;
 import cn.toint.oksms.email.model.MailClientConfig;
 import cn.toint.oksms.email.model.MailSendRequest;
 import cn.toint.oksms.email.model.MailSendResponse;
-import cn.toint.oksms.util.OkSmsUtil;
+import cn.toint.oksms.util.SmsUtil;
 import cn.toint.oktool.util.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -44,9 +44,9 @@ public class OkSmsTest {
         aliyunSmsSendRequest.setPhoneNumbers(List.of("", ""));
         aliyunSmsSendRequest.setSignName("整数软件");
         aliyunSmsSendRequest.setTemplateCode("SMS_305130820");
-        aliyunSmsSendRequest.setTemplateParam(Map.of("code", OkSmsUtil.smsCode4()));
+        aliyunSmsSendRequest.setTemplateParam(Map.of("code", SmsUtil.smsCode4()));
 
-        AliyunSmsClient aliyunSmsClient = OkSmsUtil.aliyunSms(aliyunSmsClientConfig);
+        AliyunSmsClient aliyunSmsClient = SmsUtil.aliyunSms(aliyunSmsClientConfig);
         AliyunSmsSendResponse aliyunSmsSendResponse = aliyunSmsClient.send(aliyunSmsSendRequest);
 
         log.info("短信下发结果: {}", JacksonUtil.writeValueAsString(aliyunSmsSendResponse));
@@ -71,7 +71,7 @@ public class OkSmsTest {
         sendMsgRequest.setContent("hello world");
 
         // 发送邮件
-        MailClient mailClient = OkSmsUtil.mail(mailClientConfig);
+        MailClient mailClient = SmsUtil.mail(mailClientConfig);
         MailSendResponse mailSendResponse = mailClient.send(sendMsgRequest);
         log.info(JacksonUtil.writeValueAsString(mailSendResponse));
     }

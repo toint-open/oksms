@@ -22,7 +22,7 @@ import cn.toint.oksms.email.MailClient;
 import cn.toint.oksms.email.model.MailClientConfig;
 import org.dromara.hutool.core.util.RandomUtil;
 
-public class OkSmsUtil {
+public class SmsUtil {
 
     /**
      * 邮箱客户端
