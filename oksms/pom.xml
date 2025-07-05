@@ -23,10 +23,15 @@
     <parent>
         <groupId>cn.toint</groupId>
         <artifactId>oksms-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>oksms</artifactId>
+
+    <name>oksms</name>
+    <description>oksms是一个Java短信、邮箱推送工具类库</description>
+    <url>https://github.com/toint-open/oksms</url>
 
     <dependencies>
         <!--邮箱-->
