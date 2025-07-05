@@ -61,7 +61,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <ok-dependencies.version>1.0.1</ok-dependencies.version>
+        <ok-dependencies.version>1.0.2</ok-dependencies.version>
+        <oktool.version>2.0.0-alpha-2</oktool.version>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +73,12 @@
                 <version>${ok-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.toint</groupId>
+                <artifactId>oktool</artifactId>
+                <version>${oktool.version}</version>
             </dependency>
 
             <!--阿里云短信依赖冲突-->
