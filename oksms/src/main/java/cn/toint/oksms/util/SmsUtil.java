@@ -16,11 +16,11 @@
 
 package cn.toint.oksms.util;
 
+import cn.hutool.v7.core.util.RandomUtil;
 import cn.toint.oksms.aliyun.AliyunSmsClient;
 import cn.toint.oksms.aliyun.model.AliyunSmsClientConfig;
 import cn.toint.oksms.email.MailClient;
 import cn.toint.oksms.email.model.MailClientConfig;
-import org.dromara.hutool.core.util.RandomUtil;
 
 public class SmsUtil {
 

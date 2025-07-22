@@ -22,7 +22,7 @@
 
     <groupId>cn.toint</groupId>
     <artifactId>oksms-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <packaging>pom</packaging>
     
@@ -61,8 +61,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <ok-dependencies.version>1.0.3</ok-dependencies.version>
-        <oktool.version>2.0.0-alpha-4</oktool.version>
+        <ok-dependencies.version>1.0.8</ok-dependencies.version>
+        <oktool.version>2.0.0</oktool.version>
         <springboot.version>3.5.3</springboot.version>
     </properties>
 

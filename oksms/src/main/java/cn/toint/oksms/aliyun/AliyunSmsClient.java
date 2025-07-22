@@ -26,7 +26,7 @@ import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponseBody;
 import com.aliyun.teaopenapi.models.Config;
-import org.dromara.hutool.core.map.MapUtil;
+import cn.hutool.v7.core.map.MapUtil;
 
 import java.util.Map;
 

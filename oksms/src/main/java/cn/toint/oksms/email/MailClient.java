@@ -20,8 +20,8 @@ import cn.toint.oksms.email.model.MailClientConfig;
 import cn.toint.oksms.email.model.MailSendRequest;
 import cn.toint.oksms.email.model.MailSendResponse;
 import cn.toint.oktool.util.Assert;
-import org.dromara.hutool.core.collection.CollUtil;
-import org.dromara.hutool.extra.mail.Mail;
+import cn.hutool.v7.core.collection.CollUtil;
+import cn.hutool.v7.extra.mail.Mail;
 
 import java.io.File;
 import java.util.List;

@@ -18,7 +18,7 @@ package cn.toint.oksms.email.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.dromara.hutool.extra.mail.MailAccount;
+import cn.hutool.v7.extra.mail.MailAccount;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
