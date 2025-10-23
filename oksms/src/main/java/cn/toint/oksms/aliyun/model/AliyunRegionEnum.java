@@ -16,11 +16,6 @@
 
 package cn.toint.oksms.aliyun.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@AllArgsConstructor
-@Getter
 public enum AliyunRegionEnum {
     CN_CHENGDU("cn-chengdu", AliyunEndpointEnum.CHINA),
     CN_SHENZHEN("cn-shenzhen", AliyunEndpointEnum.CHINA),
@@ -31,4 +26,17 @@ public enum AliyunRegionEnum {
 
     private final String regionId;
     private final AliyunEndpointEnum endpoint;
+
+    AliyunRegionEnum(String regionId, AliyunEndpointEnum endpoint) {
+        this.regionId = regionId;
+        this.endpoint = endpoint;
+    }
+
+    public String getRegionId() {
+        return regionId;
+    }
+
+    public AliyunEndpointEnum getEndpoint() {
+        return endpoint;
+    }
 }

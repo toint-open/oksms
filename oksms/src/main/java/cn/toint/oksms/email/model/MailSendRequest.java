@@ -17,12 +17,11 @@
 package cn.toint.oksms.email.model;
 
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
-@Data
 public class MailSendRequest {
     /**
      * 收信人
@@ -74,4 +73,88 @@ public class MailSendRequest {
      * 全局共享Session
      */
     private boolean useGlobalSession;
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        MailSendRequest that = (MailSendRequest) object;
+        return html == that.html && useGlobalSession == that.useGlobalSession && Objects.equals(tos, that.tos) && Objects.equals(ccs, that.ccs) && Objects.equals(bccs, that.bccs) && Objects.equals(subject, that.subject) && Objects.equals(content, that.content) && Objects.equals(files, that.files) && Objects.equals(replys, that.replys);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tos, ccs, bccs, subject, content, html, files, replys, useGlobalSession);
+    }
+
+    public List<String> getTos() {
+        return tos;
+    }
+
+    public void setTos(List<String> tos) {
+        this.tos = tos;
+    }
+
+    public List<String> getCcs() {
+        return ccs;
+    }
+
+    public void setCcs(List<String> ccs) {
+        this.ccs = ccs;
+    }
+
+    public List<String> getBccs() {
+        return bccs;
+    }
+
+    public void setBccs(List<String> bccs) {
+        this.bccs = bccs;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public boolean isHtml() {
+        return html;
+    }
+
+    public void setHtml(boolean html) {
+        this.html = html;
+    }
+
+    public List<File> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<File> files) {
+        this.files = files;
+    }
+
+    public List<String> getReplys() {
+        return replys;
+    }
+
+    public void setReplys(List<String> replys) {
+        this.replys = replys;
+    }
+
+    public boolean isUseGlobalSession() {
+        return useGlobalSession;
+    }
+
+    public void setUseGlobalSession(boolean useGlobalSession) {
+        this.useGlobalSession = useGlobalSession;
+    }
 }

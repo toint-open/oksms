@@ -16,9 +16,28 @@
 
 package cn.toint.oksms.email.model;
 
-import lombok.Data;
+import java.util.Objects;
 
-@Data
 public class MailSendResponse {
     private String msgId;
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        MailSendResponse that = (MailSendResponse) object;
+        return Objects.equals(msgId, that.msgId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(msgId);
+    }
+
+    public String getMsgId() {
+        return msgId;
+    }
+
+    public void setMsgId(String msgId) {
+        this.msgId = msgId;
+    }
 }

@@ -16,14 +16,9 @@
 
 package cn.toint.oksms.aliyun.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
  * 阿里云短信域名
  */
-@AllArgsConstructor
-@Getter
 public enum AliyunEndpointEnum {
     /**
      * 国内
@@ -36,4 +31,12 @@ public enum AliyunEndpointEnum {
     INTERNATIONAL("dysmsapi.ap-southeast-1.aliyuncs.com");
 
     private final String value;
+
+    AliyunEndpointEnum(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }

@@ -16,12 +16,14 @@
 
 package cn.toint.oksms.email;
 
+import cn.hutool.v7.core.bean.BeanUtil;
+import cn.hutool.v7.core.collection.CollUtil;
+import cn.hutool.v7.extra.mail.Mail;
+import cn.hutool.v7.extra.mail.MailAccount;
 import cn.toint.oksms.email.model.MailClientConfig;
 import cn.toint.oksms.email.model.MailSendRequest;
 import cn.toint.oksms.email.model.MailSendResponse;
 import cn.toint.oktool.util.Assert;
-import cn.hutool.v7.core.collection.CollUtil;
-import cn.hutool.v7.extra.mail.Mail;
 
 import java.io.File;
 import java.util.List;
@@ -31,20 +33,23 @@ import java.util.List;
  */
 public class MailClient {
 
-    private final MailClientConfig mailClientConfig;
+    private final MailAccount mailAccount;
 
     public MailClient(MailClientConfig mailClientConfig) {
-        this.mailClientConfig = mailClientConfig;
+        mailAccount = new MailAccount();
+        BeanUtil.copyProperties(mailClientConfig, mailAccount);
     }
 
     /**
      * 发送邮件
      */
     public MailSendResponse send(MailSendRequest request) {
-        Assert.notNull(request, "邮件发送请求不能为空");
-        Assert.validate(request, "邮件发送请求校验失败: {}");
+        Assert.validate(request);
 
-        final Mail mail = Mail.of(mailClientConfig).setUseGlobalSession(request.isUseGlobalSession());
+        Mail mail = Mail.of(mailAccount);
+
+        // 设置是否使用全局会话
+        mail.setUseGlobalSession(request.isUseGlobalSession());
 
         // 抄送人
         List<String> ccs = request.getCcs();
@@ -67,7 +72,7 @@ public class MailClient {
         // 附件
         List<File> files = request.getFiles();
         if (CollUtil.isNotEmpty(files)) {
-            mail.setFiles(files.toArray(new File[0]));
+            mail.addFiles(files.toArray(new File[0]));
         }
 
         mail.setTos(request.getTos().toArray(new String[0]));

@@ -26,14 +26,17 @@ import cn.toint.oksms.email.model.MailSendRequest;
 import cn.toint.oksms.email.model.MailSendResponse;
 import cn.toint.oksms.util.SmsUtil;
 import cn.toint.oktool.util.JacksonUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
 
-@Slf4j
 public class OkSmsTest {
+
+    private static final Logger log = LoggerFactory.getLogger(OkSmsTest.class);
+
     @Test
     void sendAliyunSms() {
         AliyunSmsClientConfig aliyunSmsClientConfig = new AliyunSmsClientConfig();
@@ -48,7 +51,6 @@ public class OkSmsTest {
 
         AliyunSmsClient aliyunSmsClient = SmsUtil.aliyunSms(aliyunSmsClientConfig);
         AliyunSmsSendResponse aliyunSmsSendResponse = aliyunSmsClient.send(aliyunSmsSendRequest);
-
         log.info("短信下发结果: {}", JacksonUtil.writeValueAsString(aliyunSmsSendResponse));
     }
 

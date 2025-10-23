@@ -16,12 +16,10 @@
 
 package cn.toint.oksms.aliyun.model;
 
-import lombok.Data;
-
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-@Data
 public class AliyunSmsSendRequest {
     /**
      * 接收短信的手机号码
@@ -50,4 +48,48 @@ public class AliyunSmsSendRequest {
      * 示例：{"name":"张三","number":"1390000****"}
      */
     private Map<String, Object> templateParam;
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        AliyunSmsSendRequest that = (AliyunSmsSendRequest) object;
+        return Objects.equals(phoneNumbers, that.phoneNumbers) && Objects.equals(signName, that.signName) && Objects.equals(templateCode, that.templateCode) && Objects.equals(templateParam, that.templateParam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(phoneNumbers, signName, templateCode, templateParam);
+    }
+
+    public List<String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public String getSignName() {
+        return signName;
+    }
+
+    public void setSignName(String signName) {
+        this.signName = signName;
+    }
+
+    public String getTemplateCode() {
+        return templateCode;
+    }
+
+    public void setTemplateCode(String templateCode) {
+        this.templateCode = templateCode;
+    }
+
+    public Map<String, Object> getTemplateParam() {
+        return templateParam;
+    }
+
+    public void setTemplateParam(Map<String, Object> templateParam) {
+        this.templateParam = templateParam;
+    }
 }

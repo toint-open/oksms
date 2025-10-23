@@ -22,7 +22,7 @@
 
     <groupId>cn.toint</groupId>
     <artifactId>oksms-parent</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <packaging>pom</packaging>
     
@@ -55,15 +55,15 @@
     </licenses>
 
     <properties>
-        <java.version>21</java.version>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <java.version>25</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <ok-dependencies.version>1.0.8</ok-dependencies.version>
-        <oktool.version>2.0.0</oktool.version>
-        <springboot.version>3.5.3</springboot.version>
+        <ok-dependencies.version>1.0.10</ok-dependencies.version>
+        <oktool.version>2.0.6-20251020234810</oktool.version>
+        <springboot.version>3.5.6</springboot.version>
     </properties>
 
     <dependencyManagement>

@@ -17,9 +17,9 @@
 package cn.toint.oksms.aliyun.model;
 
 import com.aliyun.tea.NameInMap;
-import lombok.Data;
 
-@Data
+import java.util.Objects;
+
 public class AliyunSmsSendResponse {
     /**
      * <p>The ID of the delivery receipt.</p>
@@ -61,4 +61,48 @@ public class AliyunSmsSendResponse {
      */
     @NameInMap("RequestId")
     public String requestId;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public String getBizId() {
+        return bizId;
+    }
+
+    public void setBizId(String bizId) {
+        this.bizId = bizId;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        AliyunSmsSendResponse that = (AliyunSmsSendResponse) object;
+        return Objects.equals(bizId, that.bizId) && Objects.equals(code, that.code) && Objects.equals(message, that.message) && Objects.equals(requestId, that.requestId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bizId, code, message, requestId);
+    }
 }
