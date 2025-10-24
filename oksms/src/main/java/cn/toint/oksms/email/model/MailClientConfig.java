@@ -19,6 +19,7 @@ package cn.toint.oksms.email.model;
 import cn.hutool.v7.extra.mail.MailAccount;
 
 import java.io.PrintStream;
+import java.util.Objects;
 
 public class MailClientConfig extends MailAccount {
 
@@ -46,5 +47,17 @@ public class MailClientConfig extends MailAccount {
 
     public void setDebugOutput(PrintStream debugOutput) {
         this.debugOutput = debugOutput;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == null || getClass() != object.getClass()) return false;
+        MailClientConfig that = (MailClientConfig) object;
+        return useGlobalSession == that.useGlobalSession && Objects.equals(debugOutput, that.debugOutput);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(useGlobalSession, debugOutput);
     }
 }
