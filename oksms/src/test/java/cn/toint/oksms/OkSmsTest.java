@@ -26,6 +26,7 @@ import cn.toint.oksms.email.model.MailSendRequest;
 import cn.toint.oksms.email.model.MailSendResponse;
 import cn.toint.oksms.util.SmsUtil;
 import cn.toint.oktool.util.JacksonUtil;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public class OkSmsTest {
     private static final Logger log = LoggerFactory.getLogger(OkSmsTest.class);
 
     @Test
+    @Disabled
     void sendAliyunSms() {
         AliyunSmsClientConfig aliyunSmsClientConfig = new AliyunSmsClientConfig();
         aliyunSmsClientConfig.setAccessKeyId("");
@@ -55,6 +57,7 @@ public class OkSmsTest {
     }
 
     @Test
+    @Disabled
     void sendMail() {
         // 客户端配置
         MailClientConfig mailClientConfig = new MailClientConfig();
@@ -77,4 +80,5 @@ public class OkSmsTest {
         MailSendResponse mailSendResponse = mailClient.send(sendMsgRequest);
         log.info(JacksonUtil.writeValueAsString(mailSendResponse));
     }
+
 }

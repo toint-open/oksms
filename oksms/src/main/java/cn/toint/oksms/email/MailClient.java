@@ -16,71 +16,51 @@
 
 package cn.toint.oksms.email;
 
-import cn.hutool.v7.core.bean.BeanUtil;
-import cn.hutool.v7.core.collection.CollUtil;
-import cn.hutool.v7.extra.mail.Mail;
-import cn.hutool.v7.extra.mail.MailAccount;
 import cn.toint.oksms.email.model.MailClientConfig;
 import cn.toint.oksms.email.model.MailSendRequest;
 import cn.toint.oksms.email.model.MailSendResponse;
 import cn.toint.oktool.util.Assert;
 
-import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 邮件客户端
  */
 public class MailClient {
 
-    private final MailAccount mailAccount;
+    private final MailClientConfig mailClientConfig;
 
     public MailClient(MailClientConfig mailClientConfig) {
-        mailAccount = new MailAccount();
-        BeanUtil.copyProperties(mailClientConfig, mailAccount);
+        this.mailClientConfig = mailClientConfig;
+        mailClientConfig.defaultIfEmpty();
     }
 
     /**
      * 发送邮件
      */
     public MailSendResponse send(MailSendRequest request) {
-        Assert.validate(request);
 
-        Mail mail = Mail.of(mailAccount);
+        Assert.notEmptyParam(request.getTos(), "收信人");
+        List<String> tos = request.getTos();
+        List<String> ccs = Optional.ofNullable(request.getCcs()).orElse(List.of());
+        List<String> bccs = Optional.ofNullable(request.getBccs()).orElse(List.of());
+        List<String> reply = Optional.ofNullable(request.getReplys()).orElse(List.of());
 
-        // 设置是否使用全局会话
-        mail.setUseGlobalSession(request.isUseGlobalSession());
-
-        // 抄送人
-        List<String> ccs = request.getCcs();
-        if (CollUtil.isNotEmpty(ccs)) {
-            mail.setCcs(ccs.toArray(new String[0]));
-        }
-
-        // 密送人
-        List<String> bccs = request.getBccs();
-        if (CollUtil.isNotEmpty(bccs)) {
-            mail.setBccs(bccs.toArray(new String[0]));
-        }
-
-        // 回信地址
-        List<String> replys = request.getReplys();
-        if (CollUtil.isNotEmpty(replys)) {
-            mail.setReply(replys.toArray(new String[0]));
-        }
-
-        // 附件
-        List<File> files = request.getFiles();
-        if (CollUtil.isNotEmpty(files)) {
-            mail.addFiles(files.toArray(new File[0]));
-        }
-
-        mail.setTos(request.getTos().toArray(new String[0]));
-        mail.setTitle(request.getSubject());
-        mail.setContent(request.getContent());
-        mail.setHtml(request.isHtml());
-
-        String msgId = mail.send();
+        String msgId = SMTPMessage.of(mailClientConfig, mailClientConfig.isUseGlobalSession(), mailClientConfig.getDebugOutput())
+                // 标题
+                .setTitle(request.getSubject())
+                // 收件人
+                .setTos(tos.toArray(String[]::new))
+                // 抄送人
+                .setCcs(ccs.toArray(String[]::new))
+                // 密送人
+                .setBccs(bccs.toArray(String[]::new))
+                // 回复地址(reply-to)
+                .setReply(reply.toArray(String[]::new))
+                // 内容和附件
+                .setContent(request.getContent(), request.isHtml())
+                .send();
 
         MailSendResponse mailSendResponse = new MailSendResponse();
         mailSendResponse.setMsgId(msgId);

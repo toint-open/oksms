@@ -16,8 +16,6 @@
 
 package cn.toint.oksms.email.model;
 
-import jakarta.validation.constraints.NotEmpty;
-
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +24,6 @@ public class MailSendRequest {
     /**
      * 收信人
      */
-    @NotEmpty
     private List<String> tos;
 
     /**
@@ -64,26 +61,16 @@ public class MailSendRequest {
      */
     private List<String> replys;
 
-//    /**
-//     * 图片与占位符，占位符格式为cid:${cid}
-//     */
-//    private Map<String, InputStream> imageMap;
-
-    /**
-     * 全局共享Session
-     */
-    private boolean useGlobalSession;
-
     @Override
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
         MailSendRequest that = (MailSendRequest) object;
-        return html == that.html && useGlobalSession == that.useGlobalSession && Objects.equals(tos, that.tos) && Objects.equals(ccs, that.ccs) && Objects.equals(bccs, that.bccs) && Objects.equals(subject, that.subject) && Objects.equals(content, that.content) && Objects.equals(files, that.files) && Objects.equals(replys, that.replys);
+        return html == that.html && Objects.equals(tos, that.tos) && Objects.equals(ccs, that.ccs) && Objects.equals(bccs, that.bccs) && Objects.equals(subject, that.subject) && Objects.equals(content, that.content) && Objects.equals(files, that.files) && Objects.equals(replys, that.replys);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tos, ccs, bccs, subject, content, html, files, replys, useGlobalSession);
+        return Objects.hash(tos, ccs, bccs, subject, content, html, files, replys);
     }
 
     public List<String> getTos() {
@@ -148,13 +135,5 @@ public class MailSendRequest {
 
     public void setReplys(List<String> replys) {
         this.replys = replys;
-    }
-
-    public boolean isUseGlobalSession() {
-        return useGlobalSession;
-    }
-
-    public void setUseGlobalSession(boolean useGlobalSession) {
-        this.useGlobalSession = useGlobalSession;
     }
 }
