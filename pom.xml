@@ -22,7 +22,7 @@
 
     <groupId>cn.toint</groupId>
     <artifactId>oksms</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <name>oksms</name>
     <description>oksms是一个Java短信、邮箱推送工具类库</description>
@@ -56,7 +56,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <ok-dependencies.version>1.0.12</ok-dependencies.version>
-        <oktool.version>2.0.7-B</oktool.version>
+        <oktool.version>2.0.9-SNAPSHOT</oktool.version>
         <springboot.version>3.5.6</springboot.version>
     </properties>
 
